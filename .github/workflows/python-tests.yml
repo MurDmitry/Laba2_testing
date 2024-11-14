@@ -54,10 +54,7 @@ jobs:
           args: >
             -Dsonar.projectKey=MurDmitry_Laba2_testing
             -Dsonar.organization=murdmitry
-            # -Dsonar.sources=.
-            # -Dsonar.tests=.
             -Dsonar.inclusions=rsa_module.py
             -Dsonar.test.inclusions=all_tests.py
-            # -Dsonar.python.coverage.reportPaths=./coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
