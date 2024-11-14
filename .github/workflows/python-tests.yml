@@ -1,0 +1,63 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install gcc
+        run: sudo apt-get install gcc
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install coverage
+
+      - name: Install Java
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+          java -version
+
+      - name: Run tests with coverage
+        run: |
+          coverage run --source=game -m unittest discover
+          coverage report
+          coverage html
+          coverage xml -o coverage.xml
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.xml
+
+      - name: Run SonarCloud analysis
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=****
+            -Dsonar.organization=*****
+            -Dsonar.sources=.
+            -Dsonar.tests=.
+            -Dsonar.inclusions=rsa_module.py
+            -Dsonar.test.inclusions=all_tests.py
+            -Dsonar.python.coverage.reportPaths=./coverage.xml
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
