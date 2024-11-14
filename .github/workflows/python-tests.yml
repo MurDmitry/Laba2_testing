@@ -52,8 +52,6 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=****
-            -Dsonar.organization=*****
             -Dsonar.sources=.
             -Dsonar.tests=.
             -Dsonar.inclusions=rsa_module.py
