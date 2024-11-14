@@ -37,7 +37,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          coverage run -m unittest discover -s . -p "all_tests.py"
+          coverage run --source=game -m unittest discover
           coverage report
           coverage html
           coverage xml -o coverage.xml
