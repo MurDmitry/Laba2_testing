@@ -37,7 +37,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          coverage run --source=rsa_module -m unittest discover
+          coverage run -m unittest discover -s . -p "all_tests.py"
           coverage report
           coverage html
           coverage xml -o coverage.xml
