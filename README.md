@@ -2,6 +2,7 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=MurDmitry_Laba2_testing&metric=bugs)](https://sonarcloud.io/summary/new_code?id=MurDmitry_Laba2_testing)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=MurDmitry_Laba2_testing&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=MurDmitry_Laba2_testing)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=MurDmitry_Laba2_testing&metric=coverage)](https://sonarcloud.io/summary/new_code?id=MurDmitry_Laba2_testing)
+[![Coverage Status](https://coveralls.io/repos/github/MurDmitry/Laba2_testing/badge.svg?branch=main)](https://coveralls.io/github/MurDmitry/Laba2_testing?branch=main)
 
 ### Блочные тесты
 
