@@ -15,6 +15,12 @@ class TestPrimeGenerator(unittest.TestCase):
         self.assertFalse(self.prime_gen._is_prime(11424))   # Число 11424 непростое (False)
         self.assertFalse(self.prime_gen._is_prime(1))       # Число 1 непростое (False)
 
+    def test_is_prime_negative(self):
+        """Является ли число простым?"""
+        self.assertFalse(self.prime_gen._is_prime(-1))        # Число -1 непростое (False)
+        self.assertFalse(self.prime_gen._is_prime(-8999))    # Число -8999 непростое (False)
+        self.assertFalse(self.prime_gen._is_prime(-17234))   # Число -17234 непростое (False)
+
     def test_generate_prime(self):
         """Сгенерированное число простое?"""
         for i in range(4):
@@ -49,6 +55,16 @@ class TestIntegration(unittest.TestCase):
     def test_key_generation(self):
         """Генерация ключей (в целом), проверка на непустоту и > 0"""
         e = 7
+        public_key, private_key, p, q = self.rsa.generate_key(e)
+        self.assertIsNotNone(public_key)        # Значение непустое
+        self.assertIsNotNone(private_key)       # Значение непустое
+        self.assertNotEqual(p, q)               # p и q разные
+        self.assertGreater(public_key[1], 0)    # Значения больше 0
+        self.assertGreater(private_key[0], 0)   # Значения больше 0
+    
+    def test_encryption_bad_e(self):
+        """ Проверка, число e отрицательное """
+        e = -9
         public_key, private_key, p, q = self.rsa.generate_key(e)
         self.assertIsNotNone(public_key)        # Значение непустое
         self.assertIsNotNone(private_key)       # Значение непустое
